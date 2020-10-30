@@ -4,6 +4,7 @@
         <button class="cut-button" @click="move()">Переместить</button>
         <button class="delete-button" @click="del()">Удалить</button>
         <MadalWindow ref="modal" :errMessage = "errMessage" :errCode = "errCode"/>
+        
     </div> 
 </template>
 
