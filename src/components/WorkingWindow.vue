@@ -52,7 +52,14 @@ name: 'WorkingWindow',
         async changeDirect(nameDirect) {
             const res = await window.api.changeDirectory(nameDirect);
             if (res.errorCode != null) {
-                console.log('Ошибка - ', res); 
+                console.log('Ошибка при копировании: ', res); 
+
+                this.$emit('error', { 
+                    code: res.errorCode, 
+                    message: res.errorText
+                });
+                this.$parent.$refs.modal.show = true;                
+
             } else {
                     this.result = res.result;
                     this.pathCurrent = nameDirect;

@@ -29,7 +29,7 @@ export default {
     name: 'MadalWindow',
     props: {
         errMessage: String,
-        errCode: String
+        errCode: Number
     },
     data: function() {
         return{

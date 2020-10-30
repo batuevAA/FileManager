@@ -3,25 +3,12 @@
         <button class="copy-button" @click="copy()">Копировать</button>
         <button class="cut-button" @click="move()">Переместить</button>
         <button class="delete-button" @click="del()">Удалить</button>
-        <MadalWindow ref="modal" :errMessage = "errMessage" :errCode = "errCode"/>
-        
     </div> 
 </template>
 
 <script>
-    import MadalWindow from './ModalWindow'
-
     export default {
         name: 'TheActionBar',
-        components: {
-            MadalWindow
-        },
-        data() {
-            return {
-                errMessage: String,
-                errCode: String
-            }
-        },
         methods: {
             async copy() {
                 let src;
@@ -37,13 +24,11 @@
 
                 const result = await window.api.copy(src, dst);
 
-                if (result.errorCode != null) {
-                    this.errCode = result.errorCode;
-                    this.errMessage = result.errorText;
-                    this.$refs.modal.show = true;
+                if (result.errorCode != null) {    
+                    this.sendError(result);
+                } else {
+                    this.refreshCatalog();
                 }
-
-                this.refreshCatalog();
             },
 
             async move() {
@@ -60,12 +45,11 @@
 
                 const result = await window.api.move(src, dst);
 
-                if (result.errorCode != null) {
-                    this.errCode = result.errorCode;
-                    this.errMessage = result.errorText;
-                    this.$refs.modal.show = true;
+                if (result.errorCode != null) {    
+                    this.sendError(result);
+                } else {
+                    this.refreshCatalog();
                 }
-                this.refreshCatalog();
             },
 
             async del() {
@@ -78,17 +62,24 @@
 
                 const result = await window.api.delete(src);
 
-                if (result.errorCode != null) {
-                    this.errCode = result.errorCode;
-                    this.errMessage = result.errorText;
-                    this.$refs.modal.show = true;
+                if (result.errorCode != null) {    
+                    this.sendError(result);
+                } else {
+                    this.refreshCatalog();
                 }
-                await this.refreshCatalog();
             },
             
             async refreshCatalog() {
                 await this.$parent.$refs.left.changeDirect(this.$parent.$refs.left.pathCurrent);
                 await this.$parent.$refs.right.changeDirect(this.$parent.$refs.right.pathCurrent);
+            },
+
+            sendError(error) {
+                this.$emit('error', { 
+                    code: error.errorCode, 
+                    message: error.errorText
+                });
+                this.$parent.$refs.modal.show = true;
             }
         }
     }

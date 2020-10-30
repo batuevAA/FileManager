@@ -1,8 +1,9 @@
 <template>
   <div id="app" class="app">
-    <WorkingWindow ref="left"  @setActive="setActivWindow($refs.left)"/>
-    <WorkingWindow ref="right" @setActive="setActivWindow($refs.right)"/>
-    <TheActionBar />
+    <WorkingWindow ref="left"  @error="getError($event)" @setActive="setActivWindow($refs.left)"/>
+    <WorkingWindow ref="right" @error="getError($event)" @setActive="setActivWindow($refs.right)"/>
+    <TheActionBar @error="getError($event)"/>
+    <MadalWindow ref="modal" :errMessage = "errMessage" :errCode = "errCode" />
   </div>
 </template>
 
@@ -12,17 +13,31 @@ import { Api } from './server/api.js'
 window.api = new Api();
 import TheActionBar from './components/TheActionBar.vue'
 import WorkingWindow from './components/WorkingWindow.vue'
+import MadalWindow from './components/ModalWindow'
 
 export default {
   name: 'App', 
   components: {
     TheActionBar,
-    WorkingWindow
+    WorkingWindow,
+    MadalWindow
+  },
+  data() {
+    return {
+      errCode: null,
+      errMessage: null
+    }
   },
   methods: {
     setActivWindow: function(activWindow) {
         this.$options.activeWindow = activWindow;
     },
+    getError: function(err) {
+      console.log('Код ошибки ' + err.code);
+      console.log('Текст ошибки ' + err.message);
+      this.errCode = err.code;
+      this.errMessage = err.message;
+    }
   },
 }
 </script>
