@@ -154,8 +154,6 @@ p {
     font-size: 10pt;
     font-family: Droid Sans Mono,Ubuntu Mono,Consolas;
 /*     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; */
-
-
 }
 
 th {
