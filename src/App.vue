@@ -13,7 +13,6 @@ window.api = new Api();
 import TheActionBar from './components/TheActionBar.vue'
 import WorkingWindow from './components/WorkingWindow.vue'
 
-
 export default {
   name: 'App', 
   components: {
