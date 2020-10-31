@@ -130,7 +130,7 @@ p {
     flex-flow: wrap; 
     align-content: flex-start;
     justify-content: center; 
-    width: 40%; 
+    width: 48%; 
     height: 85%; 
     border: 4px; 
     border-style: solid; 
@@ -158,7 +158,7 @@ p {
     table-layout: fixed;
     width: 100%;
     border-collapse: collapse; 
-    font-size: 10pt;
+    font-size: 12pt;
     font-family: Droid Sans Mono,Ubuntu Mono,Consolas;
 /*     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; */
 }

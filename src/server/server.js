@@ -3,6 +3,9 @@ const path = require("path");
 const fs_extra = require('fs-extra')
 const app = express();
 const port = 3000;
+const bodyParser = require('body-parser');
+
+const jsonParser = bodyParser.json();
 
 app.listen(port, () => {
     console.log('Сервер запущен по адресу: http://localhost:' + port);
@@ -11,11 +14,6 @@ app.listen(port, () => {
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "../../public/index.html")
 });
-
-//для нормального чтения JSON
-app.use(express.json({
-    type: ['application/json', 'text/plain']
-}))
 
 function getDiskList() {
     //Получаем через дочерний процесс список дисков в системе
@@ -32,7 +30,7 @@ function getDiskList() {
     });
 }
 
-app.post('/api/disk', async (req, res) => {
+app.post('/api/disk', jsonParser, async (req, res) => {
     const resp = {};
 
     try {
@@ -52,10 +50,10 @@ app.post('/api/disk', async (req, res) => {
         console.log(err.message);
     }
 
-    res.send(JSON.stringify(resp));
+    res.send(resp);
 });
 
-app.post('/api/changeDir', (req, res) => {
+app.post('/api/changeDir', jsonParser, (req, res) => {
     const resp = {};
 
     try {
@@ -68,10 +66,10 @@ app.post('/api/changeDir', (req, res) => {
         console.log(err.message);
     }
     
-    res.send((JSON.stringify(resp)));
+    res.send(resp);
 });
 
-app.post('/api/copy', (req, res) => {
+app.post('/api/copy', jsonParser, (req, res) => {
     const resp = {};
 
     try {
@@ -85,10 +83,10 @@ app.post('/api/copy', (req, res) => {
         console.error(err.message);
     }  
 
-    res.send((JSON.stringify(resp)));
+    res.send(resp);
 });
 
-app.post('/api/delete', (req, res) => {
+app.post('/api/delete', jsonParser, (req, res) => {
     const resp = {};
 
     try {
@@ -102,10 +100,10 @@ app.post('/api/delete', (req, res) => {
         console.log(err.message);
     }  
 
-    res.send((JSON.stringify(resp)));
+    res.send(resp);
 });
 
-app.post('/api/move', (req, res) => {
+app.post('/api/move', jsonParser, (req, res) => {
     const resp = {};
 
     try {            
@@ -120,7 +118,7 @@ app.post('/api/move', (req, res) => {
         console.log(err.message);
     }  
 
-    res.send((JSON.stringify(resp)));
+    res.send(resp);
 });
 
 app.use(express.static('src'));
