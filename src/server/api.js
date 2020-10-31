@@ -4,12 +4,18 @@ import { hideLoader } from '../load.js'
 
 export class Api {
     constructor() {
+        const instance  = axios.create({
+            baseURL: '/api',
+            'Content-Type': 'application/json',
+            headers: { 'FileManager-Header': 'api' } 
+        });
+        this.instance = instance;
     }
   
     async send(url, value) {
         let resp = {};
         try {
-            resp = await axios.post(url, value);
+            resp = await this.instance.post(url, value);
             return resp.data;
         } catch(err) {
             resp.errorCode = 7;

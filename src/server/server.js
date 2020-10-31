@@ -5,7 +5,7 @@ const app = express();
 const port = 3000;
 
 app.listen(port, () => {
-    console.log('Сервер запущен');
+    console.log('Сервер запущен по адресу: http://localhost:' + port);
 });
 
 app.get("/", (req, res) => {
@@ -32,7 +32,7 @@ function getDiskList() {
     });
 }
 
-app.post('/disk', async (req, res) => {
+app.post('/api/disk', async (req, res) => {
     const resp = {};
 
     try {
@@ -55,7 +55,7 @@ app.post('/disk', async (req, res) => {
     res.send(JSON.stringify(resp));
 });
 
-app.post('/changeDir', (req, res) => {
+app.post('/api/changeDir', (req, res) => {
     const resp = {};
 
     try {
@@ -71,7 +71,7 @@ app.post('/changeDir', (req, res) => {
     res.send((JSON.stringify(resp)));
 });
 
-app.post('/copy', (req, res) => {
+app.post('/api/copy', (req, res) => {
     const resp = {};
 
     try {
@@ -88,7 +88,7 @@ app.post('/copy', (req, res) => {
     res.send((JSON.stringify(resp)));
 });
 
-app.post('/delete', (req, res) => {
+app.post('/api/delete', (req, res) => {
     const resp = {};
 
     try {
@@ -105,7 +105,7 @@ app.post('/delete', (req, res) => {
     res.send((JSON.stringify(resp)));
 });
 
-app.post('/move', (req, res) => {
+app.post('/api/move', (req, res) => {
     const resp = {};
 
     try {            
