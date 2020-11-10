@@ -1,8 +1,8 @@
 <template>
     <div class="down-panel">
-        <button class="button copy" @click="copy()">Копировать</button>
-        <button class="button cut" @click="move()">Переместить</button>
-        <button class="button delete" @click="del()">Удалить</button>
+        <div class="button copy" @click="copy()">Копировать</div>
+        <div class="button cut" @click="move()">Переместить</div>
+        <div class="button" @click="del()">Удалить</div>
     </div> 
 </template>
 
@@ -86,7 +86,7 @@
 </script>
 
 <style scoped>
-.down-panel{
+.down-panel {
     display: flex;  
     justify-content: center; 
     width: 83%; 
@@ -106,6 +106,20 @@
     font-size: 0.9em;
     height: 90%;
     max-height: 30px;
+    border: 1px;
+    border-color: silver;
+    border-style: solid;
+    border-radius: 3px;
+    cursor: pointer;
+    background: linear-gradient(to top, #a8a9ad, #ebe7e7);
+}
+
+.button:hover {
+    background: linear-gradient(to top, #e1e2e6, #fffbfb);
+}
+
+.button:active {
+    background:  #a1a1a1;
 }
 
 
@@ -115,9 +129,5 @@
 
 .cut {
     margin-right: 10px;
-}
-
-.delete {
-    flex-basis: 25%; 
 }
 </style>>

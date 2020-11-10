@@ -13,7 +13,7 @@
             pastWay: Array //пройденый путь
         },
         methods: {
-            backHome: function() {
+            backHome() {
                 if (this.pastWay.length >= 2) { //путь должен содержать хотя бы 2 элемента
                     this.pastWay.pop();
                     const lastItemArr = this.pastWay.length - 1; //последний элемент массива
@@ -26,7 +26,7 @@
 </script>
 
 <style scoped>
-.current-path{
+.current-path {
     display: flex; 
     align-items: center; 
     justify-content: flex-start; 
@@ -34,19 +34,11 @@
     height: 6%;
     max-height: 29px;
 }
-.path-name{
+.path-name {
     display: flex; 
     flex-flow: wrap; 
     justify-content: flex-start; 
-    font-family: COMIC SANS MS; 
-    font-size: 10pt;
-}
-p {
-    display: flex; 
-    flex-basis: 100%;  
-    flex-flow: wrap; 
-    justify-content: center; 
-    font-family: COMIC SANS MS; 
-    font-size: 18pt;
+    font-size: 0.8em;
+    flex-basis: 100%; 
 }
 </style>

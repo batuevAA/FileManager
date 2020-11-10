@@ -29,10 +29,10 @@ export default {
     }
   },
   methods: {
-    setActivWindow: function(activWindow) {
+    setActivWindow(activWindow) {
         this.$options.activeWindow = activWindow;
     },
-    getError: function(err) {
+    getError(err) {
       console.log('Код ошибки ' + err.code);
       console.log('Текст ошибки ' + err.message);
       this.errCode = err.code;

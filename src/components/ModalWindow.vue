@@ -17,9 +17,9 @@
 
             <slot name="footer">
                 <div class="modal-footer">
-                    <button class="modal-button" @click="closeModal">
+                    <div class="modal-button" @click="closeModal">
                         Ок
-                    </button>
+                    </div>
                 </div>
             </slot>
         </div>
@@ -33,13 +33,13 @@ export default {
         errMessage: String,
         errCode: Number
     },
-    data: function() {
+    data() {
         return{
             show: false
         }
     },
     methods: {
-        closeModal: function () {
+        closeModal() {
             this.show = false;
         }
     }

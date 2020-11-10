@@ -4,55 +4,51 @@ import { hideLoader } from '../load.js'
 
 export class Api {
     constructor() {
-        const instance  = axios.create({
+        this.instance = axios.create({
             baseURL: '/api',
             'Content-Type': 'application/json',
             headers: { 'FileManager-Header': 'api' } 
         });
-        this.instance = instance;
     }
   
     async send(url, value) {
+        showLoader();
         let resp = {};
         try {
             resp = await this.instance.post(url, value);
+            hideLoader();
             return resp.data;
         } catch(err) {
             resp.errorCode = 7;
             resp.errorText = err.message;
             console.log('Ошибка при отправке запроса ' + err.message);
+            hideLoader();
             return resp;
         }
-      
+        
     }
   
     async copy(source, dist) {
-        showLoader();
         const result = await this.send('/copy', {
             file: source, 
             dist: dist
         })
-        hideLoader();
         return result;
     }
 
 
     async delete(targetFile) {
-        showLoader();
         const result = await this.send('/delete', {
             file: targetFile
         })
-        hideLoader();
         return result;
     }
 
     async move(source, dist) {
-        showLoader();
         const result = await this.send('/move', {
             file: source, 
             dist: dist
         })
-        hideLoader();
         return result;
     }
   

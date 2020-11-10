@@ -12,31 +12,35 @@
 <script>
 export default {
     name: 'WorkingWindowSelectDisk',
-    data: function () {
+    data() {
         return {
             disks: [],
             selected: 'Выберете диск'
         }
     },
     methods: {  
-        openDisk: function(selected){
+        openDisk(selected) {
             this.$emit('openDisk', selected);
         },
         async getDisks() {
             const res = await window.api.getDiskList();
             
             if (res.errorCode != null) {
-                console.log('Ошибка - ', res); 
+                console.log('Ошибка при получении списка дисков ', res); 
+                this.$emit('error', { 
+                code_: res.errorCode, 
+                message_: res.errorText
+            });
             } else {
                 this.disks = res.result;
             }  
         }
     },
-    created: function () {
+    created() {
         this.getDisks(); //вызываем функцию отображения дисков после загрузки страницы
     },
     watch: {
-        selected(newValue){ 
+        selected(newValue) { 
             this.openDisk(newValue) //открываем директорию выбранного диска при клику на него
         }
     }
@@ -44,7 +48,7 @@ export default {
 </script>
 
 <style scoped>
-.select-disk{
+.select-disk {
     display: flex; 
     align-items: center;  
     width: 100%;

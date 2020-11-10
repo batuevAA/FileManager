@@ -1,6 +1,6 @@
 <template>
     <div class="working-window">
-        <WorkingWindowSelectDisk @openDisk="changeDirect($event)"/>
+        <WorkingWindowSelectDisk @error="getError($event)" @openDisk="changeDirect($event)"/>
         <WorkingWindowCurrentPath :pathCurrent = "pathCurrent" :pastWay = "pastWay" @changeDirrect="changeDirect($event)"/>
 
             <div class="table-window">
@@ -15,8 +15,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="item in result" :key="item.id" class="row" v-on:click="catchClick( item.dataFolder )" v-bind:class="{ 'active': item.dataFolder == activeFolder }">
-                            <td class="cell-icon"><img :src = " '/assets' + item.icon "> </td> 
+                        <tr v-for="item in result" :key="item.id" class="row" @click="catchClick( item.dataFolder )" :class="{ 'active': item.dataFolder == activeFolder }">
+                            <td class="cell-icon"><img :src = " '/assets' + item.icon "></td> 
                             <td class="cell-name">{{ item.name }}</td>
                             <td class="cell-type">{{ item.extension }}</td>
                             <td class="cell-size">{{ item.size}}</td>
@@ -26,7 +26,7 @@
                 </table>
             </div> 
     </div>
-</template>>
+</template>
 
 <script>
 import axios from 'axios'
@@ -39,7 +39,7 @@ name: 'WorkingWindow',
         WorkingWindowSelectDisk,
         WorkingWindowCurrentPath
     },
-    data: function () {
+    data() {
         return {
             result: [],
             activeFolder: '',
@@ -68,14 +68,14 @@ name: 'WorkingWindow',
                     this.result = res.result;
                     this.pathCurrent = nameDirect;
 
-                    if (this.pastWay[this.pastWay.length-1] != nameDirect){ //Если текущий путь не равен новому
+                    if (this.pastWay[this.pastWay.length-1] != nameDirect) { //Если текущий путь не равен новому
                         this.pastWay.push(nameDirect); ///Складываем в массив текущий путь
                     }
             }         
         },        
 
         //Метод для определения сколько было сделано кликов по папке или файлу
-        catchClick: function(dataFolder){
+        catchClick(dataFolder) {
             this.clicks++ 
             if(this.clicks === 1) {
                 this.$emit('setActive'); 
@@ -87,7 +87,7 @@ name: 'WorkingWindow',
                 if (this.$parent.$options.activeWindow == this.$parent.$refs.left) {
                     this.$parent.$refs.right.activeFolder = '';
 
-                } else if (this.$parent.$options.activeWindow == this.$parent.$refs.right){
+                } else if (this.$parent.$options.activeWindow == this.$parent.$refs.right) {
                     this.$parent.$refs.left.activeFolder = '';
                 }
 
@@ -103,6 +103,14 @@ name: 'WorkingWindow',
                 this.clicks = 0;
                 this.changeDirect(dataFolder);
             }         
+        },
+
+        getError(err) {
+            this.$emit('error', { 
+                code: err.code_, 
+                message: err.message_
+            });
+            this.$parent.$refs.modal.show = true; 
         }
     }
 }
