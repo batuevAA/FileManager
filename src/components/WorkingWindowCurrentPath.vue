@@ -31,11 +31,8 @@
     align-items: center; 
     justify-content: flex-start; 
     width: 100%;
-    height: 25px;
-    border-style: solid; 
-    border-width: 1px; 
-    border-radius: 5px; 
-    border-color: #9e9cad;
+    height: 6%;
+    max-height: 29px;
 }
 .path-name{
     display: flex; 

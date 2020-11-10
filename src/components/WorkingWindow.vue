@@ -112,7 +112,7 @@ p {
     flex-flow: wrap; 
     justify-content: center; 
     font-family: COMIC SANS MS; 
-    font-size: 18pt;
+    font-size: 0.8em;
 }
 
 .center {
@@ -130,20 +130,26 @@ p {
     flex-flow: wrap; 
     align-content: flex-start;
     justify-content: center; 
-    width: 48%; 
-    height: 85%; 
-    border: 4px; 
+    width: 40%; 
+    min-width: 420px;
+    max-width: 897px;
+    height: 83%;
+    min-height: 517px;
     border-style: solid; 
-    border-width: 5px; 
+    border-width: 1px; 
     border-radius: 5px; 
     background-color: rgb(235, 235, 235); 
-    border-color: #9e9cad;
+    border-color: #504d69;
     margin-right: 10px;
+    padding: 6px;
 }
 
 .table-window {
-    width: 96%; 
-    height: 87%; 
+    display: flex;
+    width: 100%; 
+    max-width: 880px;
+    height: 88%; 
+    min-height: 450px;
     border: 1px; 
     border-style: solid; 
     border-width: 1px; 
@@ -158,9 +164,8 @@ p {
     table-layout: fixed;
     width: 100%;
     border-collapse: collapse; 
-    font-size: 12pt;
+    font-size: 0.8em;
     font-family: Droid Sans Mono,Ubuntu Mono,Consolas;
-/*     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; */
 }
 
 th {

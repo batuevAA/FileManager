@@ -46,13 +46,9 @@ export default {
 <style scoped>
 .select-disk{
     display: flex; 
-    align-items: center; 
-    justify-content: space-between; 
+    align-items: center;  
     width: 100%;
-    height: 25px;
-    border-style: solid; 
-    border-width: 1px; 
-    border-radius: 5px; 
-    border-color: #9e9cad;
+    height: 6%;
+    max-height: 29px;
 }
 </style>

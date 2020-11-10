@@ -4,6 +4,7 @@ const fs_extra = require('fs-extra')
 const app = express();
 const port = 3000;
 const bodyParser = require('body-parser');
+app.use(express.static('src'));
 
 const jsonParser = bodyParser.json();
 
@@ -14,6 +15,7 @@ app.listen(port, () => {
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "../../public/index.html")
 });
+
 
 function getDiskList() {
     //Получаем через дочерний процесс список дисков в системе
@@ -121,7 +123,7 @@ app.post('/api/move', jsonParser, (req, res) => {
     res.send(resp);
 });
 
-app.use(express.static('src'));
+
 
 const icons = {
     "/movie.ico": [".mkv", ".avi", ".mpeg", ".mp4"],
@@ -235,3 +237,4 @@ function readDir(folder) {
     });
     return result;
 }
+
