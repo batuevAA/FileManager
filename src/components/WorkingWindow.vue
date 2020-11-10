@@ -5,20 +5,24 @@
 
             <div class="table-window">
                 <table class="table">
-                    <tr class="row">
-                        <th  class="cell-icon"></th>
-                        <th  class="cell-name_">Имя</th>
-                        <th  class="cell-type">Тип</th>
-                        <th  class="cell-size">Размер</th>
-                        <th  class="cell-date">Дата</th>
-                    </tr>
-                    <tr v-for="item in result" :key="item.id" class="row" v-on:click="catchClick( item.dataFolder )" v-bind:class="{ 'active': item.dataFolder == activeFolder }">
-                        <td class="cell-icon"><img width="20px" height="20px" :src = " '/assets' + item.icon "> </td> 
-                        <td class="cell-name">{{ item.name }}</td>
-                        <td class="cell-type">{{ item.extension }}</td>
-                        <td class="cell-size">{{ item.size}}</td>
-                        <td class="cell-date">{{ item.dateOfChange }}</td> 
-                    </tr>
+                    <thead>
+                        <tr class="row">
+                            <th  class="cell-icon"></th>
+                            <th  class="cell-name_">Имя</th>
+                            <th  class="cell-type">Тип</th>
+                            <th  class="cell-size">Размер</th>
+                            <th  class="cell-date">Дата</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in result" :key="item.id" class="row" v-on:click="catchClick( item.dataFolder )" v-bind:class="{ 'active': item.dataFolder == activeFolder }">
+                            <td class="cell-icon"><img width="20px" height="20px" :src = " '/assets' + item.icon "> </td> 
+                            <td class="cell-name">{{ item.name }}</td>
+                            <td class="cell-type">{{ item.extension }}</td>
+                            <td class="cell-size">{{ item.size}}</td>
+                            <td class="cell-date">{{ item.dateOfChange }}</td> 
+                        </tr>
+                    </tbody>
                 </table>
             </div> 
     </div>
@@ -140,7 +144,9 @@ p {
     border-radius: 5px; 
     background-color: rgb(235, 235, 235); 
     border-color: #504d69;
+    margin-top: 10px;
     margin-right: 10px;
+    margin-bottom: 5px;
     padding: 6px;
 }
 
@@ -197,11 +203,7 @@ th {
     display: table-column;  
 }
 
-.cell-name_ {   
-    width: 40%;
-}
-
-.cell-name {     
+.cell-name_, .cell-name {   
     width: 40%;
 }
 

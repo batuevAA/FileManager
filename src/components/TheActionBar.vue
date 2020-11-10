@@ -1,8 +1,8 @@
 <template>
     <div class="down-panel">
-        <button class="copy-button" @click="copy()">Копировать</button>
-        <button class="cut-button" @click="move()">Переместить</button>
-        <button class="delete-button" @click="del()">Удалить</button>
+        <button class="button copy" @click="copy()">Копировать</button>
+        <button class="button cut" @click="move()">Переместить</button>
+        <button class="button delete" @click="del()">Удалить</button>
     </div> 
 </template>
 
@@ -89,42 +89,35 @@
 .down-panel{
     display: flex;  
     justify-content: center; 
-    align-content: center;
-    width: 82%; 
+    width: 83%; 
+    min-width: 875px;
+    max-width: 1840px;
     height: 5%; 
-    border: 4px; 
-    margin-top: -2%;
-    border-style: solid; 
-    border-width: 2px; 
-    border-radius: 5px; 
-    background-color: #f0edff; 
-    border-color: #9e9cad;
     font-family: Droid Sans Mono,Ubuntu Mono,Consolas;
 }
 
-.copy-button{
+.button {
     display: flex; 
     justify-content: center; 
+    align-items: center;
     align-self: center;
     cursor: pointer;
     flex-basis: 25%; 
+    font-size: 0.9em;
+    height: 90%;
+    max-height: 30px;
+}
+
+
+.copy {
     margin-right: 10px;
 }
 
-.cut-button{
-    display: flex; 
-    justify-content: center; 
-    align-self: center;
-    cursor: pointer;
-    flex-basis: 25%; 
+.cut {
     margin-right: 10px;
 }
 
-.delete-button{
-    display: flex; 
-    justify-content: center; 
-    align-self: center;
-    cursor: pointer;
+.delete {
     flex-basis: 25%; 
 }
 </style>>
