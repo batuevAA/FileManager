@@ -16,7 +16,7 @@
                     </thead>
                     <tbody>
                         <tr v-for="item in result" :key="item.id" class="row" v-on:click="catchClick( item.dataFolder )" v-bind:class="{ 'active': item.dataFolder == activeFolder }">
-                            <td class="cell-icon"><img width="20px" height="20px" :src = " '/assets' + item.icon "> </td> 
+                            <td class="cell-icon"><img :src = " '/assets' + item.icon "> </td> 
                             <td class="cell-name">{{ item.name }}</td>
                             <td class="cell-type">{{ item.extension }}</td>
                             <td class="cell-size">{{ item.size}}</td>
@@ -197,9 +197,9 @@ th {
 }
 
 .cell-name_, .cell-name, .cell-type, .cell-size, .cell-date {
-    float: left; /* fix for  buggy browsers */      
-    overflow: hidden; /* Обрезаем текст если не помещается */
-    text-overflow: ellipsis; /* Добавляем многоточие */
+    float: left;      
+    overflow: hidden; 
+    text-overflow: ellipsis;
     display: table-column;  
 }
 
@@ -222,5 +222,10 @@ th {
 .active {
     background-color: rgb(180, 200, 230);
     cursor: pointer;
+}
+
+img {
+    width: 20px; 
+    height: 20px;
 }
 </style>>

@@ -5,6 +5,7 @@
             <slot name="title">
                 <h3 class="modal-title">File Manager</h3>
             </slot>
+
             <slot name="body">
                 <div class="modal-content">
                     Код ошибки 
@@ -13,6 +14,7 @@
                     {{errMessage}}
                 </div>
             </slot>
+
             <slot name="footer">
                 <div class="modal-footer">
                     <button class="modal-button" @click="closeModal">
