@@ -179,7 +179,6 @@ p {
     width: 100%;
     border-collapse: collapse; 
     font-size: 0.8em;
-    font-family: Droid Sans Mono,Ubuntu Mono,Consolas;
 }
 
 th {

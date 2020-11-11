@@ -15,17 +15,16 @@ export class Api {
         showLoader();
         let resp = {};
         try {
-            resp = await this.instance.post(url, value);
-            hideLoader();
+            resp = await this.instance.post(url, value);           
             return resp.data;
         } catch(err) {
             resp.errorCode = 7;
             resp.errorText = err.message;
-            console.log('Ошибка при отправке запроса ' + err.message);
-            hideLoader();
+            console.log('Ошибка при отправке запроса ' + err.message);           
             return resp;
+        } finally {
+            hideLoader();
         }
-        
     }
   
     async copy(source, dist) {

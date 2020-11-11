@@ -17,9 +17,7 @@
 
             <slot name="footer">
                 <div class="modal-footer">
-                    <div class="modal-button" @click="closeModal">
-                        Ок
-                    </div>
+                    <input type="button" value="Ок" class="modal-button" @click="closeModal">
                 </div>
             </slot>
         </div>
@@ -66,7 +64,6 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-family: Droid Sans Mono,Ubuntu Mono,Consolas;
 }
 
 .modal-close {
@@ -109,5 +106,6 @@ export default {
     padding: 8px;
     font-size: 17px;
     font-weight: 500;
+    cursor: pointer;
 }
 </style>

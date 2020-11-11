@@ -50,5 +50,6 @@ export default {
     height: 100vh;
     width: 100%;
     flex-wrap: wrap;
+    font-family: Droid Sans Mono,Ubuntu Mono,Consolas;
 }
 </style>

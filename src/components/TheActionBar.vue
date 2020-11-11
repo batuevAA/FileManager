@@ -1,8 +1,8 @@
 <template>
     <div class="down-panel">
-        <div class="button copy" @click="copy()">Копировать</div>
-        <div class="button cut" @click="move()">Переместить</div>
-        <div class="button" @click="del()">Удалить</div>
+        <input type="button" value="Копировать" class="button copy" @click="copy()">
+        <input type="button" value="Переместить" class="button cut" @click="move()">
+        <input type="button" value="Удалить" class="button" @click="del()">
     </div> 
 </template>
 
@@ -93,7 +93,6 @@
     min-width: 875px;
     max-width: 1840px;
     height: 5%; 
-    font-family: Droid Sans Mono,Ubuntu Mono,Consolas;
 }
 
 .button {
@@ -101,7 +100,6 @@
     justify-content: center; 
     align-items: center;
     align-self: center;
-    cursor: pointer;
     flex-basis: 25%; 
     font-size: 0.9em;
     height: 90%;

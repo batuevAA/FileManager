@@ -1,7 +1,7 @@
 <template>
     <div class="current-path">
         <p class="path-name">{{pathCurrent}}</p>
-        <button class="back-button" @click="backHome()">Назад</button>
+        <input type="button" value="Назад" class="back-button" @click="backHome()">
     </div>
 </template>
 
@@ -40,5 +40,9 @@
     justify-content: flex-start; 
     font-size: 0.8em;
     flex-basis: 100%; 
+}
+
+.back-button {
+    cursor: pointer;
 }
 </style>

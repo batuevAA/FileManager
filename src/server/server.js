@@ -13,7 +13,7 @@ app.listen(port, () => {
 });
 
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + "../../public/index.html")
+    res.sendFile(__dirname + "../../public/index.html");
 });
 
 
@@ -148,7 +148,6 @@ function getIcon(extension) {
 }
 
 function getCorrectSize(folder, file) {
-    if (fs_extra.statSync(folder + '/' + file).isFile()) {
         let size = (fs_extra.statSync(folder + '/' + file).size);
         if (size <= 1024) {
             size = (size).toFixed(2) + ' б';
@@ -159,10 +158,7 @@ function getCorrectSize(folder, file) {
         } else {
             size = (size / 1073741824).toFixed(2) + ' Гб';
         }
-        return size;
-    } else {
-        return null;
-    }
+        return size; 
 }
 
 function getCorrectDate(folder, file) {
@@ -204,18 +200,20 @@ function readDir(folder) {
     const files = fs_extra.readdirSync(folder);
     files.forEach(file => {
         try {
-            //Форматирем размер
-            let size = getCorrectSize(folder, file);
-
             //Форматируем дату/время
             let dateOfChange = getCorrectDate(folder, file);
 
             //Форматируем пути к иконкам в соответсвии с расширением
             let icon;
             let ext;
+            let size;
+
             if (fs_extra.statSync(folder + '/' + file).isDirectory()) { //если папка отправляем соответсвующую ссылку на иконку
                 icon = "/Folder.ico";
             } else {
+                //Форматирем размер
+                size = getCorrectSize(folder, file);
+
                 ext = path.extname(folder + '/' + file); //get extension
                 icon = getIcon(ext);
                 if (icon == null) {
